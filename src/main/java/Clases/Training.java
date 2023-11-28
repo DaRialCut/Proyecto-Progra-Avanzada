@@ -6,6 +6,7 @@ package Clases;
 public class Training {
     private int ID;
     private String trainingName;
+    private int trainerID;
 
 
     public Training(){
@@ -27,4 +28,13 @@ public class Training {
     public String getTrainingName() {
         return trainingName;
     }
+
+    public int getTrainerID() {
+        return trainerID;
+    }
+
+    public void setTrainerID(int trainerID) {
+        this.trainerID = trainerID;
+    }
+    
 }

@@ -4,6 +4,8 @@
  */
 package Interfaz_Grafica;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nan_c
@@ -22,6 +24,10 @@ public class homePanel extends javax.swing.JPanel {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+    
+    public void setLabel(){
+        userName.setText("Hola "+getUsuario()+"!");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,21 +38,50 @@ public class homePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        userName = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
+
         setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Entrenamientos Disponibles");
+
+        userName.setForeground(new java.awt.Color(255, 255, 255));
+        userName.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(userName))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel1)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(userName)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel1)
+                .addContainerGap(342, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
 }

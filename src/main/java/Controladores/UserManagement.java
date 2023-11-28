@@ -47,7 +47,7 @@ public class UserManagement implements UserDb{
     @Override
     public boolean Update(Connection link, User user) {
         double bmi = Math.round(user.getWeight()/(user.getHeight()*user.getHeight()));
-        query="UPDATE user set password= ?, email= ?,gender= ?, age= ?, weight= ?, height=?, bmi= ?";
+        query="UPDATE user set username=?,password= ?, email= ?,gender= ?, age= ?, weight= ?, height=?,bmi= ? WHERE userID= ?";
         try{
             ps= link.prepareStatement(query);
             ps.setString(1,user.getName());
@@ -58,6 +58,7 @@ public class UserManagement implements UserDb{
             ps.setDouble(6,user.getWeight());
             ps.setDouble(7,user.getHeight());
             ps.setDouble(8,bmi);
+            ps.setInt(9, user.getID());
             ps.execute();
             return true;
             
@@ -69,11 +70,12 @@ public class UserManagement implements UserDb{
     }
     @Override
     public boolean Delete(Connection link, String userName) {
-         query="delete * user where userName= ?";
+         query="DELETE * FROM user WHERE username = ?";
          try {
             //aqui hay que buscar si se encuentra 
+            ps= link.prepareStatement(query);
             ps.setString(1,userName);
-            rs= ps.executeQuery(query);
+            ps.execute();
             
             return true;
             
@@ -93,6 +95,7 @@ public class UserManagement implements UserDb{
             ResultSet rs=s.executeQuery(query);
             while (rs.next()){
                User user=new User();
+               user.setID(rs.getInt("userID"));
                user.setName(rs.getString("userName"));
                user.setPassword(rs.getString("password"));
                user.setEmail(rs.getString("email"));
@@ -124,6 +127,7 @@ public class UserManagement implements UserDb{
             ps.setString(1,userName);
             rs= ps.executeQuery();
             while (rs.next()){
+               user.setID(rs.getInt("userID"));
                user.setName(rs.getString("userName"));
                user.setPassword(rs.getString("password"));
                user.setEmail(rs.getString("email"));

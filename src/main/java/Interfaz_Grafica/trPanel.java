@@ -4,6 +4,10 @@
  */
 package Interfaz_Grafica;
 
+import Clases.User;
+import Controladores.Conn;
+import Controladores.UserManagement;
+
 /**
  *
  * @author nan_c
@@ -22,6 +26,8 @@ public class trPanel extends javax.swing.JPanel {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,11 +44,11 @@ public class trPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 358, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGap(0, 405, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

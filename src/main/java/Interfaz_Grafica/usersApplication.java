@@ -64,6 +64,7 @@ public class usersApplication extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         content.setBackground(new java.awt.Color(0, 51, 51));
+        content.setAutoscrolls(true);
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -73,7 +74,7 @@ public class usersApplication extends javax.swing.JFrame{
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
+            .addGap(0, 405, Short.MAX_VALUE)
         );
 
         training.setBackground(new java.awt.Color(0, 0, 0));
@@ -116,7 +117,6 @@ public class usersApplication extends javax.swing.JFrame{
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(training, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,14 +125,15 @@ public class usersApplication extends javax.swing.JFrame{
                 .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(home, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(home, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                     .addComponent(training, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(profile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -158,6 +159,7 @@ public class usersApplication extends javax.swing.JFrame{
         trPanel tr = new trPanel();
         tr.setUsuario(getUsuario());
         ShowPanel(tr);
+        
     }//GEN-LAST:event_trainingActionPerformed
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
@@ -165,6 +167,7 @@ public class usersApplication extends javax.swing.JFrame{
         homePanel home = new homePanel();
         home.setUsuario(getUsuario());
         ShowPanel(home);
+        home.setLabel();
     }//GEN-LAST:event_homeActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
@@ -172,7 +175,7 @@ public class usersApplication extends javax.swing.JFrame{
         profilePanel pr = new profilePanel();
         pr.setUsuario(getUsuario());
         ShowPanel(pr);
-        pr.getUserData();
+        pr.ShowUserData();
     }//GEN-LAST:event_profileActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed

@@ -29,15 +29,21 @@ public class profilePanel extends javax.swing.JPanel {
         this.usuario = usuario;
     }
     
-    public void getUserData(){
+    public User getUserData(){
+        Conn c = new Conn();
+        UserManagement um = new UserManagement();
+        User u= um.Search(c.Connect(),getUsuario());
+        return u;
+    }
+    
+    public void ShowUserData(){
         Conn c  = new Conn();
         UserManagement um = new UserManagement();
         User u= um.Search(c.Connect(), getUsuario());
         showUserData(u);
-        
-        
     }
     public void showUserData(User u){
+        idUser.setText("ID: "+String.valueOf(u.getID()));
         userNameTxt.setText(u.getName());
         ageTxt.setText(String.valueOf(u.getAge()));
         genderTxt.setText(u.getGender());
@@ -74,7 +80,7 @@ public class profilePanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        dataModifier = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         imcTxt = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -89,6 +95,7 @@ public class profilePanel extends javax.swing.JPanel {
         userNameTxt = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
         ageTxt = new javax.swing.JTextPane();
+        idUser = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 51, 51));
 
@@ -113,9 +120,14 @@ public class profilePanel extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("IMC");
 
-        jToggleButton1.setBackground(new java.awt.Color(60, 63, 65));
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("Modificar Datos");
+        dataModifier.setBackground(new java.awt.Color(60, 63, 65));
+        dataModifier.setForeground(new java.awt.Color(255, 255, 255));
+        dataModifier.setText("Modificar Datos");
+        dataModifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataModifierActionPerformed(evt);
+            }
+        });
 
         imcTxt.setBackground(new java.awt.Color(60, 63, 65));
         imcTxt.setForeground(new java.awt.Color(60, 63, 65));
@@ -148,51 +160,60 @@ public class profilePanel extends javax.swing.JPanel {
         ageTxt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane7.setViewportView(ageTxt);
 
+        idUser.setForeground(new java.awt.Color(255, 255, 255));
+        idUser.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(42, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(53, 53, 53))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel6)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(53, 53, 53)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel4)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(35, 35, 35))
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(167, 167, 167)
+                            .addComponent(jLabel8))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(119, 119, 119)
+                            .addComponent(dataModifier)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(jLabel8))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(99, 99, 99))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
-                        .addGap(72, 72, 72)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel7)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                    .addGap(34, 34, 34)))
-                            .addComponent(jScrollPane5)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jToggleButton1)))
-                .addGap(24, 24, 24))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(idUser)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(17, 17, 17)
+                .addComponent(idUser)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
@@ -217,26 +238,37 @@ public class profilePanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jToggleButton1)
-                .addGap(122, 122, 122))
+                .addGap(18, 18, 18)
+                .addComponent(dataModifier)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Menu(){
+    private void dataModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataModifierActionPerformed
+        // TODO add your handling code here:
+        modificarUsuario mu = new modificarUsuario();
+        mu.setUser(getUsuario());
+        mu.ShowUserData();
+        mu.setVisible(true);
+        
+    }//GEN-LAST:event_dataModifierActionPerformed
+   
+    public void Menu(){
         MainMenu m = new MainMenu();
         m.setVisible(true);
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane ageTxt;
+    private javax.swing.JToggleButton dataModifier;
     private javax.swing.JTextPane emailTxt;
     private javax.swing.JTextPane genderTxt;
     private javax.swing.JTextPane heightTxt;
+    private javax.swing.JLabel idUser;
     private javax.swing.JTextPane imcTxt;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -252,7 +284,6 @@ public class profilePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextPane userNameTxt;
     private javax.swing.JTextPane weightTxt;
     // End of variables declaration//GEN-END:variables
