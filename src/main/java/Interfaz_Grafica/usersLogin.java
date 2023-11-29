@@ -181,13 +181,14 @@ public class usersLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Nombre de usuario y/o contraseña incorrectas");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void userApp(){
+    public void userApp(){
         usersApplication userApp= new usersApplication();
         userApp.setVisible(true);
         userApp.setUsuario(userNameTxt.getText());
+        userApp.showUserData();
         dispose();
     }
-    private void mainMenu(){
+    public void mainMenu(){
         MainMenu mainMenu = new MainMenu();
         mainMenu.setVisible(true);
         dispose();
