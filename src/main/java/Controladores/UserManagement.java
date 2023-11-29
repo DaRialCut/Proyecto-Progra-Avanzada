@@ -69,12 +69,12 @@ public class UserManagement implements UserDb{
         return false;
     }
     @Override
-    public boolean Delete(Connection link, int userID) {
-         query="DELETE FROM user WHERE `user`.`userID` = ?";
+    public boolean Delete(Connection link, String userName) {
+         query="DELETE * FROM user WHERE username = ?";
          try {
             //aqui hay que buscar si se encuentra 
             ps= link.prepareStatement(query);
-            ps.setInt(1,userID);
+            ps.setString(1,userName);
             ps.execute();
             
             return true;
