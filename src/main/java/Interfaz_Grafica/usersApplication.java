@@ -4,9 +4,8 @@ package Interfaz_Grafica;
 import Clases.User;
 import Controladores.Conn;
 import Controladores.UserManagement;
-import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 /**
  *
@@ -156,41 +155,34 @@ public class usersApplication extends javax.swing.JFrame{
 
     private void trainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainingActionPerformed
         // TODO add your handling code here:
-        trPanel tr = new trPanel();
-        tr.setUsuario(getUsuario());
-        ShowPanel(tr);
-        
+        usersTraining ut = new usersTraining();
+        ut.setUser(getUsuario());
+        ut.setVisible(true);
+        dispose();
     }//GEN-LAST:event_trainingActionPerformed
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
         // TODO add your handling code here:
-        homePanel home = new homePanel();
-        home.setUsuario(getUsuario());
-        ShowPanel(home);
-        home.setLabel();
+        usersHome uh = new usersHome();
+        uh.setUser(getUsuario());
+        uh.setVisible(true);
+        dispose();
     }//GEN-LAST:event_homeActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
         // TODO add your handling code here:
-        profilePanel pr = new profilePanel();
-        pr.setUsuario(getUsuario());
-        ShowPanel(pr);
-        pr.ShowUserData();
-       
-        
+        usersProfile up = new usersProfile();
+        up.setUser(getUsuario());
+        up.showData();
+        up.setVisible(true);
+        dispose();
     }//GEN-LAST:event_profileActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
         mainMenu();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-    private void ShowPanel(JPanel p){
-        p.setSize(350,416);
-        content.removeAll();
-        content.add(p,BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }
+   
     private void mainMenu(){
         MainMenu mainMenu = new MainMenu();
         mainMenu.setVisible(true);
