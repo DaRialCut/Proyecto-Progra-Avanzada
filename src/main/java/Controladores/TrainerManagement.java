@@ -144,6 +144,7 @@ public class TrainerManagement implements TrainerDb {
         
         return 1;
     }
+    
     public int Validate(Connection link ,String userName, String password){
         query="SELECT count(username) FROM Trainer WHERE userName = ? AND password = ?";
         

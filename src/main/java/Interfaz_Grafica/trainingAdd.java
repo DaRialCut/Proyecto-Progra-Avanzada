@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaz_Grafica;
 
-/**
- *
- * @author Gabusoide
- */
 public class trainingAdd extends javax.swing.JFrame {
     
     private String trainer;
@@ -15,7 +7,11 @@ public class trainingAdd extends javax.swing.JFrame {
      * Creates new form trainingAdd
      */
     public trainingAdd() {
+        setSize(350, 416);
+        setTitle("Profi-Health");
+        setLocationRelativeTo(null);
         initComponents();
+        setResizable(false);
     }
     
     public void setTrainer(String trainer){
@@ -37,7 +33,7 @@ public class trainingAdd extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        trainingName1 = new javax.swing.JTextField();
+        trainingName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         excercisesTable = new javax.swing.JTable();
@@ -52,11 +48,11 @@ public class trainingAdd extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Ingrese datos del entrenamiento");
 
-        trainingName1.setBackground(new java.awt.Color(0, 0, 0));
-        trainingName1.setForeground(new java.awt.Color(255, 255, 255));
-        trainingName1.addActionListener(new java.awt.event.ActionListener() {
+        trainingName.setBackground(new java.awt.Color(0, 0, 0));
+        trainingName.setForeground(new java.awt.Color(255, 255, 255));
+        trainingName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trainingName1ActionPerformed(evt);
+                trainingNameActionPerformed(evt);
             }
         });
 
@@ -99,7 +95,7 @@ public class trainingAdd extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(trainingName1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(trainingName, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -113,7 +109,7 @@ public class trainingAdd extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(trainingName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(trainingName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -135,9 +131,9 @@ public class trainingAdd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void trainingName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainingName1ActionPerformed
+    private void trainingNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainingNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_trainingName1ActionPerformed
+    }//GEN-LAST:event_trainingNameActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
@@ -189,6 +185,6 @@ public class trainingAdd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField trainingName1;
+    private javax.swing.JTextField trainingName;
     // End of variables declaration//GEN-END:variables
 }

@@ -292,9 +292,6 @@ public class Register extends javax.swing.JFrame {
             else{
                 JOptionPane.showMessageDialog(null,"El nombre de usuario que haz indicado ya existe");
             }
-            
-            
-            
         }
     }//GEN-LAST:event_registerActionPerformed
     private void mainMenu(){
