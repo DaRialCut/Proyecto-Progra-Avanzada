@@ -187,6 +187,8 @@ public class trainerLogin extends javax.swing.JFrame {
     private void trainerApp(){
         trainerApp trainersApp = new trainerApp();
         trainersApp.setVisible(true);
+        trainersApp.setTrainer(userNameTxt.getText());
+        
         dispose();
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

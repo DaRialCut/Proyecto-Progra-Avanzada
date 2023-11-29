@@ -1,4 +1,3 @@
-
 package Controladores;
 import Clases.Training;
 import Clases.TrainingDb;
@@ -112,7 +111,4 @@ public class TrainingManagement implements TrainingDb{
         }
         return null;
     }
-    
-    
-    
 }

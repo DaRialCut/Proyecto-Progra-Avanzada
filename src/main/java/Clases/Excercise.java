@@ -1,6 +1,5 @@
 package Clases;
 
-
 public class Excercise{
     private int ID;
     private String excerciseName;

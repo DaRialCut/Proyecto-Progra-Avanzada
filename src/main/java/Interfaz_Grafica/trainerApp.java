@@ -1,39 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaz_Grafica;
 
+import Clases.Trainer;
+import Controladores.Conn;
+import Controladores.TrainerManagement;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author nan_c
- */
-public class trainerApp extends javax.swing.JFrame {
-    private String usuario;
 
+public class trainerApp extends javax.swing.JFrame {
+    private String trainer;
     /**
      * Creates new form trainerApp
      */
     public trainerApp() {
-        setSize(350, 416);
+        setSize(1000, 1000);
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
         initComponents();
-    }
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+        setResizable(false);
     }
     
-    public void showUserData(){
-        JOptionPane.showMessageDialog(null,getUsuario());
+    public String getTrainer() {
+        return trainer;
     }
 
+    public void setTrainer(String usuario) {
+        this.trainer = usuario;
+    }
+    
+    public Trainer getUserData(){
+        TrainerManagement tm = new TrainerManagement();
+        Conn c = new Conn();
+        return tm.Search(c.Connect(), getTrainer());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,37 +43,182 @@ public class trainerApp extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        addExcerciseBtn = new javax.swing.JButton();
+        addExcerciseLbl = new javax.swing.JLabel();
+        addTrainingLbl = new javax.swing.JLabel();
+        addTrainingBtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        menuBtn = new javax.swing.JButton();
+        logout = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 51));
+        setPreferredSize(new java.awt.Dimension(400, 610));
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+
+        addExcerciseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        addExcerciseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addExcerciseBtnActionPerformed(evt);
+            }
+        });
+
+        addExcerciseLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addExcerciseLbl.setForeground(new java.awt.Color(0, 0, 0));
+        addExcerciseLbl.setText("Agregar nuevo ejercicio");
+
+        addTrainingLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addTrainingLbl.setForeground(new java.awt.Color(0, 0, 0));
+        addTrainingLbl.setText("Agregar nuevo entrenamiento");
+
+        addTrainingBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        addTrainingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTrainingBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 354, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addExcerciseBtn)
+                    .addComponent(addTrainingBtn))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addTrainingLbl)
+                    .addComponent(addExcerciseLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(217, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(addTrainingBtn)
+                        .addGap(92, 92, 92))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(addTrainingLbl)
+                        .addGap(107, 107, 107)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addExcerciseBtn)
+                    .addComponent(addExcerciseLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69))
         );
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        menuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
+        menuBtn.setAutoscrolls(true);
+        menuBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        menuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBtnActionPerformed(evt);
+            }
+        });
+
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logout.png"))); // NOI18N
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(menuBtn)
+                .addGap(74, 74, 74)
+                .addComponent(logout)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(menuBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {logout, menuBtn});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void menuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBtnActionPerformed
+        // TODO add your handling code here:
+        trainerProfile tp = new trainerProfile();
+        tp.setTrainer(getTrainer());
+        tp.showData();
+        tp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuBtnActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(null,"¿Seguro que desea cerrar sesión?")==0){
+            mainMenu();
+            dispose();
+        }
+        /*
+        else{
+            trainerApp ta = new trainerApp();
+            ta.setTrainer(getTrainer());
+            ta.setVisible(true);
+            dispose();
+           
+        }
+        */
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void addExcerciseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExcerciseBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        excerciseAdd eAdd = new excerciseAdd();
+        eAdd.setTrainer(getTrainer());
+        eAdd.setVisible(true);
+    }//GEN-LAST:event_addExcerciseBtnActionPerformed
+
+    private void addTrainingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTrainingBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        trainingAdd tAdd = new trainingAdd();
+        tAdd.setTrainer(getTrainer());
+        tAdd.setVisible(true);
+    }//GEN-LAST:event_addTrainingBtnActionPerformed
+    
+    private void mainMenu(){
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.setVisible(true);
+        dispose();
+    }
     /**
      * @param args the command line arguments
      */
@@ -111,6 +255,13 @@ public class trainerApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addExcerciseBtn;
+    private javax.swing.JLabel addExcerciseLbl;
+    private javax.swing.JButton addTrainingBtn;
+    private javax.swing.JLabel addTrainingLbl;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JToggleButton logout;
+    private javax.swing.JButton menuBtn;
     // End of variables declaration//GEN-END:variables
 }

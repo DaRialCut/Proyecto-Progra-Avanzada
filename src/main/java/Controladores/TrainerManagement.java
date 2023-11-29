@@ -106,7 +106,7 @@ public class TrainerManagement implements TrainerDb {
         try {
             ps= link.prepareStatement(query);
             ps.setString(1, userName);
-            rs=ps.executeQuery(query);
+            rs=ps.executeQuery();
             while (rs.next()){
                trainer.setID(rs.getInt("trainerID"));
                trainer.setName(rs.getString("userName"));
