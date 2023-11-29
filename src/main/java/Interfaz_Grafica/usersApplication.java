@@ -4,7 +4,6 @@ package Interfaz_Grafica;
 import Clases.User;
 import Controladores.Conn;
 import Controladores.UserManagement;
-import javax.swing.JOptionPane;
 
 
 /**
@@ -33,10 +32,6 @@ public class usersApplication extends javax.swing.JFrame{
         this.usuario = usuario;
     }
     
-    public void showUserData(){
-        User us = getUserData();
-        JOptionPane.showMessageDialog(null,"Nombre Usuario: "+us.getName()+"\nEmail: "+us.getEmail()+"\nIMC: "+us.getBmi() );
-    }
     public User getUserData(){
         UserManagement usM = new UserManagement();
         Conn c = new Conn();
@@ -56,6 +51,7 @@ public class usersApplication extends javax.swing.JFrame{
         bg = new javax.swing.JPanel();
         content = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         training = new javax.swing.JButton();
         home = new javax.swing.JButton();
         profile = new javax.swing.JButton();
@@ -68,21 +64,31 @@ public class usersApplication extends javax.swing.JFrame{
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Bienvenido a ProfiHealth!");
+
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentLayout.createSequentialGroup()
+            .addGroup(contentLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+            .addGroup(contentLayout.createSequentialGroup()
+                .addGap(127, 127, 127)
                 .addComponent(jLabel1)
-                .addGap(132, 132, 132))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(338, Short.MAX_VALUE))
         );
 
         training.setBackground(new java.awt.Color(0, 0, 0));
@@ -237,6 +243,7 @@ public class usersApplication extends javax.swing.JFrame{
     private javax.swing.JPanel content;
     private javax.swing.JButton home;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton profile;
     private javax.swing.JButton training;

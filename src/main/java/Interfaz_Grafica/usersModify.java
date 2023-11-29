@@ -4,17 +4,33 @@
  */
 package Interfaz_Grafica;
 
+import Clases.User;
+import Controladores.Conn;
+import Controladores.UserManagement;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+
 /**
  *
  * @author nan_c
  */
 public class usersModify extends javax.swing.JFrame {
-
+    String user;
     /**
      * Creates new form usersModify
      */
     public usersModify() {
         initComponents();
+        setTitle("Profi-Health");
+        setLocationRelativeTo(null);
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     /**
@@ -31,24 +47,24 @@ public class usersModify extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        usernameTxt = new javax.swing.JTextPane();
+        usernamePanel = new javax.swing.JTextPane();
         passwordTxt = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        passPanel = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        ageTxt = new javax.swing.JTextPane();
+        agePanel = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        genderTxt = new javax.swing.JTextPane();
+        genderPanel = new javax.swing.JTextPane();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        weightTxt = new javax.swing.JTextPane();
+        weightPanel = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        heightTxt = new javax.swing.JTextPane();
+        heightPanel = new javax.swing.JTextPane();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        emailTxt = new javax.swing.JTextPane();
+        emailPanel = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -66,16 +82,16 @@ public class usersModify extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña");
 
-        jScrollPane1.setViewportView(usernameTxt);
+        jScrollPane1.setViewportView(usernamePanel);
 
-        passwordTxt.setViewportView(jTextPane2);
+        passwordTxt.setViewportView(passPanel);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Edad");
 
-        jScrollPane3.setViewportView(ageTxt);
+        jScrollPane3.setViewportView(agePanel);
 
-        jScrollPane4.setViewportView(genderTxt);
+        jScrollPane4.setViewportView(genderPanel);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Genero");
@@ -86,18 +102,23 @@ public class usersModify extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Altura");
 
-        jScrollPane5.setViewportView(weightTxt);
+        jScrollPane5.setViewportView(weightPanel);
 
-        jScrollPane6.setViewportView(heightTxt);
+        jScrollPane6.setViewportView(heightPanel);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Email");
 
-        jScrollPane7.setViewportView(emailTxt);
+        jScrollPane7.setViewportView(emailPanel);
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Listo!");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,9 +143,7 @@ public class usersModify extends javax.swing.JFrame {
                                 .addComponent(jButton2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(137, 137, 137)
-                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(59, 59, 59)
+                                        .addGap(260, 260, 260)
                                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -146,7 +165,9 @@ public class usersModify extends javax.swing.JFrame {
                                             .addComponent(jScrollPane6)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(167, 167, 167)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -211,9 +232,41 @@ public class usersModify extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Conn c =  new Conn();
+        UserManagement um = new UserManagement();
+        User u =  um.Search(c.Connect(), getUser());
+        
+        u.setPassword(passPanel.getText());
+        u.setAge(parseInt(agePanel.getText()));
+        u.setGender(genderPanel.getText());
+        u.setEmail(emailPanel.getText());
+        u.setWeight(parseDouble(weightPanel.getText()));
+        u.setHeight(parseDouble(heightPanel.getText()));
+        um.Update(c.Connect(), u);  
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    public void showData(){
+        Conn c =  new Conn();
+        UserManagement um = new UserManagement();
+        User u =  um.Search(c.Connect(),getUser());
+       
+        usernamePanel.setText(u.getName());
+        usernamePanel.setEditable(false);
+        passPanel.setText(u.getPassword());
+        agePanel.setText(String.valueOf(u.getAge()));
+        genderPanel.setText(u.getGender());
+        emailPanel.setText(u.getEmail());
+        weightPanel.setText(String.valueOf(u.getWeight()));
+        heightPanel.setText(String.valueOf(u.getHeight()));
+      
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -247,10 +300,10 @@ public class usersModify extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane ageTxt;
-    private javax.swing.JTextPane emailTxt;
-    private javax.swing.JTextPane genderTxt;
-    private javax.swing.JTextPane heightTxt;
+    private javax.swing.JTextPane agePanel;
+    private javax.swing.JTextPane emailPanel;
+    private javax.swing.JTextPane genderPanel;
+    private javax.swing.JTextPane heightPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -268,9 +321,9 @@ public class usersModify extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane passPanel;
     private javax.swing.JScrollPane passwordTxt;
-    private javax.swing.JTextPane usernameTxt;
-    private javax.swing.JTextPane weightTxt;
+    private javax.swing.JTextPane usernamePanel;
+    private javax.swing.JTextPane weightPanel;
     // End of variables declaration//GEN-END:variables
 }
