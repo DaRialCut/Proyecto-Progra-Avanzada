@@ -98,7 +98,7 @@ public class TrainingManagement implements TrainingDb{
         try {
             ps= link.prepareStatement(query);
             ps.setString(1, name);
-            rs=ps.executeQuery(query);
+            rs=ps.executeQuery();
             while (rs.next()){
                training.setID(rs.getInt("trainingID"));
                training.setTrainingName(rs.getString("nameT"));
@@ -109,6 +109,27 @@ public class TrainingManagement implements TrainingDb{
             
         } catch (SQLException ex) {
             Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public ArrayList<Object[]> getTraining(Connection link){
+        ArrayList<Object[]> arr = new ArrayList<Object[]>();
+        query="""
+          Select t.trainingID,t.nameT, tr.username, tr.specialty FROM training t
+          JOIN trainer tr
+          USING(trainerID)
+        """;
+        try{
+            ps= link.prepareStatement(query);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                Object[]data = new Object[]{rs.getInt("trainingID"),rs.getString("nameT"),rs.getString("username"),rs.getString("specialty")};
+                arr.add(data);
+            }
+            return arr;
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE,null,ex);
         }
         return null;
     }

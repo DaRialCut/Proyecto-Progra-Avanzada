@@ -99,14 +99,16 @@ public class TrainerManagement implements TrainerDb {
         return null;
     }
 
+    @Override
     public Trainer Search(Connection link, String userName) {
         Trainer trainer=new Trainer();
-        query="select * from Trainer where userName= ?";
+        query="select * from Trainer where username= ?";
         try {
             ps= link.prepareStatement(query);
             ps.setString(1, userName);
             rs=ps.executeQuery(query);
             while (rs.next()){
+               trainer.setID(rs.getInt("trainerID"));
                trainer.setName(rs.getString("userName"));
                trainer.setPassword(rs.getString("password"));
                trainer.setEmail(rs.getString("email"));
@@ -143,7 +145,7 @@ public class TrainerManagement implements TrainerDb {
         return 1;
     }
     public int Validate(Connection link ,String userName, String password){
-        query="SELECT count(userName) FROM Trainer WHERE userName = ? AND password = ?";
+        query="SELECT count(username) FROM Trainer WHERE userName = ? AND password = ?";
         
         try{
             ps= link.prepareStatement(query);

@@ -181,4 +181,19 @@ public class UserManagement implements UserDb{
         
         return 1;
     }
+    
+    public boolean setTraining(Connection link, int trainingId,String user){
+        query="UPDATE user set trainingID = ? WHERE username = ?";
+        try{
+            ps=link.prepareStatement(query);
+            ps.setInt(1,trainingId);
+            ps.setString(2, user);
+            ps.execute();
+            return true;
+            
+        }catch(SQLException ex){
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return false;
+    }
 }
