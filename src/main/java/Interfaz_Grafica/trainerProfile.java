@@ -254,7 +254,7 @@ public class trainerProfile extends javax.swing.JFrame {
 
     private void deleteTrainerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTrainerBtnActionPerformed
         // TODO add your handling code here:
-        /*    
+        
         if(JOptionPane.showConfirmDialog(null,"Estas Seguro?")==0){
             Conn c =  new Conn();
             TrainerManagement tm =  new TrainerManagement();
@@ -264,7 +264,7 @@ public class trainerProfile extends javax.swing.JFrame {
             ul.setVisible(true);
             dispose();
         }
-        */
+        
     }//GEN-LAST:event_deleteTrainerBtnActionPerformed
 
     private void trainerModifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainerModifyBtnActionPerformed

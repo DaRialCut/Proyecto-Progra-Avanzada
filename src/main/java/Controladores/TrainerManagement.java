@@ -19,9 +19,29 @@ public class TrainerManagement implements TrainerDb {
     public ResultSet rs = null;
 
     @Override
-    public boolean Create(Connection link, Trainer trainer) {
-         query="INSERT INTO Trainer (userName,password,email,gender,age,specialty) VALUES (?,?,?,?,?,?)";
+    public boolean Create(Connection link, Trainer trainer){
         try{
+            if(Search(link, "ELIMINADO").getName() == null){
+                query = "INSERT INTO Trainer (trainerID,age,username,password,email,gender,specialty) VALUES (?,?,?,?,?,?,?)";
+                ps = link.prepareStatement(query);
+                ps.setInt(1, 0);
+                ps.setInt(2, 0);
+                ps.setString(3,"ELIMINADO");
+                ps.setString(4,"ELIMINADO");
+                ps.setString(5,"ELIMINADO");
+                ps.setString(6,"ELIMINADO");
+                ps.setString(7,"ELIMINADO");
+                
+                ps.executeUpdate();
+
+                int id = Search(link, "ELIMINADO").getID();
+                query = "UPDATE Trainer set trainerID = 0 WHERE trainerID = ?";
+                ps = link.prepareStatement(query);
+                ps.setInt(1, id);
+                ps.executeUpdate();
+            }
+            
+            query="INSERT INTO Trainer (userName,password,email,gender,age,specialty) VALUES (?,?,?,?,?,?)";
             ps= link.prepareStatement(query);
             ps.setString(1,trainer.getName());
             ps.setString(2,trainer.getPassword());
@@ -36,7 +56,6 @@ public class TrainerManagement implements TrainerDb {
         }catch (SQLException ex) {
             Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return false;
     }
 
@@ -61,16 +80,20 @@ public class TrainerManagement implements TrainerDb {
         
         return false;
     }
+    
     @Override
     public boolean Delete(Connection link, String userName) {
+        String query;
          try {
-            String deleteTrainingQuery = "DELETE FROM training WHERE trainerID IN (SELECT trainerID FROM Trainer WHERE userName = ?)";
-            ps = link.prepareStatement(deleteTrainingQuery);
-            ps.setString(1, userName);
+            Trainer t = Search(link, userName);
+
+            query = "UPDATE Training SET trainerID = 0 WHERE trainerID = ?";
+            ps = link.prepareStatement(query);
+            ps.setInt(1, t.getID());
             ps.executeUpdate();
             
-            String deleteTrainerQuery = "DELETE FROM Trainer WHERE userName = ?";
-            ps = link.prepareStatement(deleteTrainerQuery);
+            query = "DELETE FROM Trainer WHERE userName = ?";
+            ps = link.prepareStatement(query);
             ps.setString(1, userName);
             ps.executeUpdate();
             
@@ -79,7 +102,6 @@ public class TrainerManagement implements TrainerDb {
         }catch (SQLException ex) {
             Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return false;
     }
     

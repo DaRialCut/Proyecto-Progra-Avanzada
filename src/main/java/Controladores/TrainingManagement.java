@@ -46,9 +46,7 @@ public class TrainingManagement implements TrainingDb{
         }catch (SQLException ex) {
             Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return false;
-        
     }
 
     @Override
@@ -94,14 +92,12 @@ public class TrainingManagement implements TrainingDb{
                training.setTrainerID(rs.getInt("trainerID"));
                
                trainingList.add(training);
-               
             }
             return trainingList;
         }catch (SQLException ex) {
             Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        
     }
 
     @Override

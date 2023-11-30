@@ -238,7 +238,6 @@ public class trRegister extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Hay campos vacios, debe llenar todos los campos");
         }
         else{
-
             // Verificar si el usuario existe o no
             // Guardar usuario en la base de datos
             if(validateData(userName.getText(),pass,gender.getText(),parseInt(age.getText()),email.getText(),specialty.getText())==true){
