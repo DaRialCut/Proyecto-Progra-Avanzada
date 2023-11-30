@@ -53,11 +53,25 @@ public class TrainingManagement implements TrainingDb{
 
     @Override
     public boolean Eliminar(Connection link, String name) {
-        query="delete * Training where nameT= ?";
+        String query;
          try {
-            //aqui hay que buscar si se encuentra 
-            ps.setString(1,name );
-            rs= ps.executeQuery(query);
+            Training t = Buscar(link, name);
+
+            query = "UPDATE user SET trainingID = NULL WHERE trainingID = ?";
+            ps = link.prepareStatement(query);
+            ps.setInt(1, t.getID());
+            ps.executeUpdate();
+            
+            query = "DELETE FROM excer_training WHERE trainingID = ?";
+            ps = link.prepareStatement(query);
+            ps.setInt(1, t.getID());
+            ps.executeUpdate();
+
+            query = "DELETE FROM Training WHERE nameT = ?";
+            ps = link.prepareStatement(query);
+            ps.setString(1, name);
+            ps.executeUpdate();
+            
             return true;
             
         }catch (SQLException ex) {

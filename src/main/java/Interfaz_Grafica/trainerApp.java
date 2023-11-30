@@ -209,15 +209,6 @@ public class trainerApp extends javax.swing.JFrame {
             mainMenu();
             dispose();
         }
-        /*
-        else{
-            trainerApp ta = new trainerApp();
-            ta.setTrainer(getTrainer());
-            ta.setVisible(true);
-            dispose();
-           
-        }
-        */
     }//GEN-LAST:event_logoutActionPerformed
 
     private void addExcerciseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExcerciseBtnActionPerformed
@@ -238,8 +229,10 @@ public class trainerApp extends javax.swing.JFrame {
 
     private void delTrainingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delTrainingBtnActionPerformed
         // TODO add your handling code here:
-        
-        
+        dispose();
+        delTraining dt = new delTraining();
+        dt.setTrainer(trainer);
+        dt.setVisible(true);
     }//GEN-LAST:event_delTrainingBtnActionPerformed
 
     private void delExcerciseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delExcerciseBtnActionPerformed
