@@ -54,14 +54,19 @@ public class ExcerciseManagement implements ExcersiceDb{
     }
 
     @Override
-    public boolean Eliminar(Connection link, int ID) {
-        query="delete * Training where exID = ?";
-         try {
-            //aqui hay que buscar si se encuentra 
-            ps.setInt(0,ID);
-            rs = ps.executeQuery(query);
-            return true;
+    public boolean Eliminar(Connection link, int ID){
+        try {
+            String deleteExcerTrainingQuery = "DELETE FROM excer_training WHERE exID = ?";
+            ps = link.prepareStatement(deleteExcerTrainingQuery);
+            ps.setInt(1, ID);
+            ps.executeUpdate();
+
+            String deleteExcerciseQuery = "DELETE FROM excercise WHERE exID = ?";
+            ps = link.prepareStatement(deleteExcerciseQuery);
+            ps.setInt(1, ID);
+            ps.executeUpdate();
             
+            return true;
         }catch (SQLException ex) {
             Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,11 +100,36 @@ public class ExcerciseManagement implements ExcersiceDb{
 
     @Override
     public Excercise Buscar(Connection link, int ID) {
+        Excercise excercise = new Excercise();
+        query = "SELECT * FROM Excercise WHERE exID = ?";
+
+        try {
+            ps = link.prepareStatement(query);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery(); 
+
+            while (rs.next()) {
+                excercise.setID(rs.getInt("exID"));
+                excercise.setExcerciseName(rs.getString("nameE"));
+                excercise.setBurntCalories(rs.getInt("burntCal"));
+                excercise.setDifficulty(rs.getString("difficulty"));
+                excercise.setReps(rs.getInt("reps"));
+            }
+
+            return excercise;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    /*
+    public Excercise Buscar(Connection link, int ID) {
         Excercise excercise=new Excercise();
         query="select * from Excercise where exID = ?";
         try {
             ps= link.prepareStatement(query);
-            ps.setInt(0, ID);
+            ps.setInt(1, ID);
             rs=ps.executeQuery(query);
             while (rs.next()){
                excercise.setID(rs.getInt("exID"));
@@ -115,7 +145,7 @@ public class ExcerciseManagement implements ExcersiceDb{
         }
         return null;
     }
-    
+    */
     public ArrayList<Object[]> getExcercise(Connection link){
         ArrayList<Object[]> arr = new ArrayList<Object[]>();
         query="""

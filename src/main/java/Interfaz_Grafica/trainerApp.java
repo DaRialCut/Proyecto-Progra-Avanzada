@@ -47,6 +47,8 @@ public class trainerApp extends javax.swing.JFrame {
         addTrainingBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        delTrainingBtn = new javax.swing.JButton();
+        delExcerciseBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         menuBtn = new javax.swing.JButton();
         logout = new javax.swing.JToggleButton();
@@ -58,7 +60,7 @@ public class trainerApp extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
         addExcerciseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
-        addExcerciseBtn.setText("Agregar nuevo entrenamiento");
+        addExcerciseBtn.setText("Agregar nuevo ejercicio");
         addExcerciseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addExcerciseBtnActionPerformed(evt);
@@ -66,7 +68,7 @@ public class trainerApp extends javax.swing.JFrame {
         });
 
         addTrainingBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
-        addTrainingBtn.setText("Agregar nuevo ejercicio");
+        addTrainingBtn.setText("Agregar nuevo entrenamiento");
         addTrainingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addTrainingBtnActionPerformed(evt);
@@ -79,6 +81,22 @@ public class trainerApp extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Bienvenido a ProfiHealth!");
 
+        delTrainingBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        delTrainingBtn.setText("Eliminar entrenamiento");
+        delTrainingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delTrainingBtnActionPerformed(evt);
+            }
+        });
+
+        delExcerciseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        delExcerciseBtn.setText("Eliminar ejercicio");
+        delExcerciseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delExcerciseBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,15 +106,15 @@ public class trainerApp extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(delExcerciseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delTrainingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addExcerciseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addTrainingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(129, 129, 129)
-                            .addComponent(jLabel1))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addComponent(addExcerciseBtn))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(77, 77, 77)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,10 +125,14 @@ public class trainerApp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(53, 53, 53)
-                .addComponent(addTrainingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(addExcerciseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addComponent(addExcerciseBtn)
+                .addGap(18, 18, 18)
+                .addComponent(addTrainingBtn)
+                .addGap(18, 18, 18)
+                .addComponent(delExcerciseBtn)
+                .addGap(18, 18, 18)
+                .addComponent(delTrainingBtn)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -213,6 +235,20 @@ public class trainerApp extends javax.swing.JFrame {
         tAdd.setTrainer(getTrainer());
         tAdd.setVisible(true);
     }//GEN-LAST:event_addTrainingBtnActionPerformed
+
+    private void delTrainingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delTrainingBtnActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_delTrainingBtnActionPerformed
+
+    private void delExcerciseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delExcerciseBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        delExcercise delE = new delExcercise();
+        delE.setTrainer(trainer);
+        delE.setVisible(true);
+    }//GEN-LAST:event_delExcerciseBtnActionPerformed
     
     private void mainMenu(){
         MainMenu mainMenu = new MainMenu();
@@ -257,6 +293,8 @@ public class trainerApp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addExcerciseBtn;
     private javax.swing.JButton addTrainingBtn;
+    private javax.swing.JButton delExcerciseBtn;
+    private javax.swing.JButton delTrainingBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
