@@ -4,12 +4,23 @@
  */
 package Interfaz_Grafica;
 
+import Clases.User;
+import Controladores.Conn;
+import Controladores.TrainingManagement;
+import Controladores.UserManagement;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nan_c
  */
 public class usersTraining extends javax.swing.JFrame {
     String user;
+    DefaultTableModel model=  new DefaultTableModel();
+    
+    
+    
     /**
      * Creates new form usersTraining
      */
@@ -26,6 +37,38 @@ public class usersTraining extends javax.swing.JFrame {
     public void setUser(String user) {
         this.user = user;
     }
+    
+    public void showData(){
+        Conn c = new Conn();
+        UserManagement um =  new UserManagement();
+        TrainingManagement tm= new TrainingManagement();
+        User u = um.Search(c.Connect(), getUser());
+        String training= tm.getTraining(c.Connect(),u.getCurrentTraining());
+        trainingLabel.setText("Entrenamiento: "+training);
+    }
+    
+    public void charge(){
+        ArrayList<Object> nombreColumna =  new ArrayList<Object>();
+        nombreColumna.add("Ejercicio");
+        nombreColumna.add("Calorias ");
+        nombreColumna.add("Dificultad");
+        nombreColumna.add("Repeticiones");
+        for(Object columna: nombreColumna){
+            model.addColumn(columna);
+        }
+        this.table.setModel(model);
+        
+        Conn c = new Conn();
+        UserManagement um =  new UserManagement();
+        User u =  um.Search(c.Connect(), getUser());
+        
+        
+        ArrayList<Object[]> arr= um.getTraining(c.Connect(), u.getCurrentTraining());
+        for(Object[]dato : arr){
+            model.addRow(dato);
+        }
+        this.table.setModel(model);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,6 +80,9 @@ public class usersTraining extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        trainingLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,19 +97,54 @@ public class usersTraining extends javax.swing.JFrame {
             }
         });
 
+        table = new javax.swing.JTable(){
+            public boolean isCellEditable(int filas,int columnas){
+                return false;
+            }
+        };
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(table);
+
+        trainingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        trainingLabel.setForeground(new java.awt.Color(255, 255, 255));
+        trainingLabel.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(trainingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(473, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(trainingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -128,5 +209,8 @@ public class usersTraining extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table;
+    private javax.swing.JLabel trainingLabel;
     // End of variables declaration//GEN-END:variables
 }

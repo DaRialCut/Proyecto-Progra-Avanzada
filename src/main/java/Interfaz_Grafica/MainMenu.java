@@ -33,6 +33,8 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Registrarse = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        trainerRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +77,18 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("¿Quieres ser un entrenador?");
+
+        trainerRegister.setBackground(new java.awt.Color(0, 0, 0));
+        trainerRegister.setForeground(new java.awt.Color(255, 255, 255));
+        trainerRegister.setText("Registrarse");
+        trainerRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trainerRegisterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout SeleccionEntrenadorLayout = new javax.swing.GroupLayout(SeleccionEntrenador);
         SeleccionEntrenador.setLayout(SeleccionEntrenadorLayout);
         SeleccionEntrenadorLayout.setHorizontalGroup(
@@ -91,14 +105,17 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SeleccionEntrenadorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SeleccionEntrenadorLayout.createSequentialGroup()
-                        .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SeleccionEntrenadorLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap())))
+                .addGap(41, 41, 41)
+                .addComponent(trainerRegister)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SeleccionEntrenadorLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
         );
         SeleccionEntrenadorLayout.setVerticalGroup(
             SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +129,13 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGroup(SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Registrarse)
+                .addGroup(SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Registrarse)
+                    .addComponent(trainerRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -151,6 +172,16 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         entMenu();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void trainerRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainerRegisterActionPerformed
+        // TODO add your handling code here:
+        registerTr();
+    }//GEN-LAST:event_trainerRegisterActionPerformed
+    private void registerTr(){
+        trRegister tr =  new trRegister();
+        tr.setVisible(true);
+        dispose();
+    }
     private void entMenu(){
         trainerLogin entMenu = new trainerLogin();
         entMenu.setVisible(true);
@@ -205,7 +236,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     public static javax.swing.JLabel tituloTxt;
+    private javax.swing.JButton trainerRegister;
     // End of variables declaration//GEN-END:variables
 
     private void setLocalDependency(Object object) {
