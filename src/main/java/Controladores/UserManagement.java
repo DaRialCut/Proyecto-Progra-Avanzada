@@ -135,6 +135,7 @@ public class UserManagement implements UserDb{
                user.setWeight(rs.getDouble("weight"));
                user.setHeight(rs.getDouble("height"));
                user.setBmi(rs.getDouble("bmi"));
+               user.setCurrentTraining(rs.getInt("trainingID"));
                 
             }
             return user;   
@@ -195,6 +196,33 @@ public class UserManagement implements UserDb{
         }
         return false;
     }
+    
+    public ArrayList<Object[]> getTraining(Connection link,int trainingID){
+        ArrayList<Object[]> arr =  new ArrayList<Object[]>();
+        query="""
+          Select e.nameE,e.burntCal,e.difficulty,e.reps FROM excer_training et
+          JOIN excercise e
+          USING(exID)
+          WHERE et.trainingID = ?  
+        """;
+        try{
+            ps= link.prepareStatement(query);
+            ps.setInt(1,trainingID);
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                Object[] data= new Object[]{rs.getString("nameT"),rs.getInt("burntCal"),rs.getString("difficulty"),rs.getInt("reps")};
+                arr.add(data);
+                
+            }
+            return arr;
+        }catch(SQLException ex){
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return null;
+    }
+    
+   
 
 }
 
