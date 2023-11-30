@@ -1,17 +1,54 @@
 package Interfaz_Grafica;
 
+import Clases.Excercise;
+import Clases.Training;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import Controladores.ExcerciseManagement;
+import Controladores.TrainerManagement;
+import Controladores.TrainingManagement;
+import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
+
 public class trainingAdd extends javax.swing.JFrame {
-    
+    private Training training = new Training();
+    private ArrayList<Integer> exIDS = new ArrayList<>();
     private String trainer;
+    DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form trainingAdd
      */
+    
+    public void charge(){
+        ArrayList<Object> col = new ArrayList<Object>();
+        Controladores.Conn c = new Controladores.Conn();
+        
+        col.add("ID Ejercicio");
+        col.add("Ejercicio");
+        col.add("Dificultad");
+        col.add("Calorias Quemadas");
+        
+        for(Object columna : col){
+            model.addColumn(columna);
+        }
+        this.table.setModel(model);
+        
+        ExcerciseManagement eMa = new ExcerciseManagement();
+        ArrayList<Object[]> arr = eMa.getExcercise(c.Connect());
+        
+        for(Object[]dato : arr){
+            model.addRow(dato);
+        }
+        this.table.setModel(model);
+    }
+    
     public trainingAdd() {
         setSize(350, 416);
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
         initComponents();
         setResizable(false);
+        charge();
     }
     
     public void setTrainer(String trainer){
@@ -35,9 +72,12 @@ public class trainingAdd extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         trainingName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        excercisesTable = new javax.swing.JTable();
         backBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        addExcerBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        addTrainBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,16 +100,6 @@ public class trainingAdd extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre entrenamiento");
 
-        excercisesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(excercisesTable);
-
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,44 +107,95 @@ public class trainingAdd extends javax.swing.JFrame {
             }
         });
 
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(table);
+
+        addExcerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        addExcerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addExcerBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Agregar ejercicio");
+
+        addTrainBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        addTrainBtn.setText("Crear entrenamiento");
+        addTrainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTrainBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(backBtn)
-                .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
+                        .addGap(100, 100, 100)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(trainingName, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(66, 66, 66)
+                        .addComponent(trainingName, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addTrainBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addComponent(addExcerBtn)
+                            .addGap(34, 34, 34))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(68, 68, 68)
+                            .addComponent(backBtn)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(trainingName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(trainingName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addTrainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addExcerBtn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,7 +206,9 @@ public class trainingAdd extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,6 +226,69 @@ public class trainingAdd extends javax.swing.JFrame {
         tp.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void addExcerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExcerBtnActionPerformed
+        // TODO add your handling code here:
+        int select= table.getSelectedRow();
+        int excerciseID;
+        if(select>=0){
+            excerciseID = parseInt (table.getValueAt(select, 0).toString());
+            exIDS.add(excerciseID);
+            JOptionPane.showMessageDialog(null, "Ejercicio agregado exitosamente");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error. Debe seleccionar un ejercicio");
+        }
+    }//GEN-LAST:event_addExcerBtnActionPerformed
+
+    private void addTrainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTrainBtnActionPerformed
+        // TODO add your handling code here:
+        Controladores.Conn c = new Controladores.Conn();
+        TrainingManagement tm = new TrainingManagement();
+        TrainerManagement trainerM = new TrainerManagement();
+        Training t = new Training();
+        String nameT = trainingName.getText();
+        
+        if(nameT.equals("")){
+            JOptionPane.showMessageDialog(null,"Debe ingresar un nombre para el entrenamiento");
+        }
+        
+        else{
+            if(exIDS.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Debe ingresar ejercicios para el entrenamiento");
+            }
+            
+            else{
+                if(tm.Validate(c.Connect(), nameT)==0){
+                    t.setTrainingName(nameT);
+                    t.setTrainerID(trainerM.Search(c.Connect(), trainer).getID());
+
+                    if(tm.Crear(c.Connect(), t) == true){
+                        t = tm.Buscar(c.Connect(), nameT);
+                        addExcercises(t.getID());
+
+                        JOptionPane.showMessageDialog(null,"Entrenamiento agregado correctamente");
+                    }
+
+                    else{
+                        JOptionPane.showMessageDialog(null,"Entrenamiento no se pudo agregar");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"El nombre del entrenamiento ya existe");
+                }
+            } 
+        }
+    }//GEN-LAST:event_addTrainBtnActionPerformed
+    
+    private void addExcercises(int trainingID){
+        Controladores.Conn c = new Controladores.Conn();
+        TrainingManagement tm = new TrainingManagement();
+        
+        for(int excerciseID : exIDS){
+            tm.addExcercise(c.Connect(), trainingID, excerciseID);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -179,12 +325,21 @@ public class trainingAdd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addExcerBtn;
+    private javax.swing.JButton addTrainBtn;
     private javax.swing.JButton backBtn;
-    private javax.swing.JTable excercisesTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table;
     private javax.swing.JTextField trainingName;
     // End of variables declaration//GEN-END:variables
+
+    private static class Conn {
+
+        public Conn() {
+        }
+    }
 }

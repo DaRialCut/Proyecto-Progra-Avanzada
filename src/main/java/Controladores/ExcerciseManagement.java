@@ -115,4 +115,26 @@ public class ExcerciseManagement implements ExcersiceDb{
         }
         return null;
     }
+    
+    public ArrayList<Object[]> getExcercise(Connection link){
+        ArrayList<Object[]> arr = new ArrayList<Object[]>();
+        query="""
+          Select * FROM Excercise
+        """;
+        try{
+            ps= link.prepareStatement(query);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                Object[]data = new Object[]{rs.getInt("exID"),rs.getString("nameE"),rs.getInt("burntCal"),rs.getInt("reps")};
+                arr.add(data);
+            }
+            return arr;
+        
+        }catch(SQLException ex){
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return null;
+    }
+    
+    
 }

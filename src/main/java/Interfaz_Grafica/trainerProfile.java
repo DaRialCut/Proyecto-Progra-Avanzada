@@ -3,6 +3,7 @@ package Interfaz_Grafica;
 import Clases.Trainer;
 import Controladores.Conn;
 import Controladores.TrainerManagement;
+import javax.swing.JOptionPane;
 
 public class trainerProfile extends javax.swing.JFrame {
     private String trainer;
@@ -31,7 +32,6 @@ public class trainerProfile extends javax.swing.JFrame {
         System.out.println(getTrainer());
         Trainer t =  tm.Search(c.Connect(), getTrainer());
         
-        idLabel.setText("ID: "+String.valueOf(t.getID()));
         usernamePanel.setText(t.getName());
         agePanel.setText(String.valueOf(t.getAge()));
         genderPanel.setText(t.getGender());
@@ -55,7 +55,6 @@ public class trainerProfile extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        idLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         usernamePanel = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -72,12 +71,12 @@ public class trainerProfile extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        deleteTrainerBtn = new javax.swing.JButton();
+        trainerModifyBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
-
-        idLabel.setText("jLabel1");
 
         jScrollPane1.setViewportView(usernamePanel);
 
@@ -111,15 +110,30 @@ public class trainerProfile extends javax.swing.JFrame {
             }
         });
 
+        deleteTrainerBtn.setText("Eliminar Cuenta");
+        deleteTrainerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteTrainerBtnActionPerformed(evt);
+            }
+        });
+
+        trainerModifyBtn.setText("Editar Perfil");
+        trainerModifyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trainerModifyBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(idLabel))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(271, 271, 271)
+                .addComponent(backBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,24 +155,27 @@ public class trainerProfile extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGap(193, 193, 193))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(8, 8, 8)
+                                    .addComponent(trainerModifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(13, 13, 13)
-                                    .addComponent(jLabel4))))
-                        .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                                    .addComponent(jLabel4))
+                                .addComponent(deleteTrainerBtn)))))
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(idLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
+                .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -177,7 +194,11 @@ public class trainerProfile extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(83, 83, 83)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteTrainerBtn)
+                    .addComponent(trainerModifyBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -203,6 +224,28 @@ public class trainerProfile extends javax.swing.JFrame {
         tp.setTrainer(getTrainer());
         tp.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void deleteTrainerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTrainerBtnActionPerformed
+        // TODO add your handling code here:
+            
+        if(JOptionPane.showConfirmDialog(null,"Estas Seguro?")==0){
+            Conn c =  new Conn();
+            TrainerManagement tm =  new TrainerManagement();
+            Trainer t = tm.Search(c.Connect(), getTrainer());
+            tm.Delete(c.Connect(), t.getName());
+            usersLogin ul = new usersLogin();
+            ul.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_deleteTrainerBtnActionPerformed
+
+    private void trainerModifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainerModifyBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        trainerModify tm = new trainerModify();
+        
+        tm.setVisible(true);
+    }//GEN-LAST:event_trainerModifyBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,9 +285,9 @@ public class trainerProfile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane agePanel;
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton deleteTrainerBtn;
     private javax.swing.JTextPane emailPanel;
     private javax.swing.JTextPane genderPanel;
-    private javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -257,6 +300,7 @@ public class trainerProfile extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextPane specialtyPanel;
+    private javax.swing.JButton trainerModifyBtn;
     private javax.swing.JTextPane usernamePanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,11 +4,12 @@
  */
 package Interfaz_Grafica;
 
-import Clases.Trainer;
-import Clases.Training;
 import Controladores.Conn;
 import Controladores.TrainingManagement;
+import Controladores.UserManagement;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,20 +21,31 @@ public class usersHome extends javax.swing.JFrame {
     DefaultTableModel model=  new DefaultTableModel();
     
     public void charge(){
+        ArrayList<Object> nombreColumna =  new ArrayList<Object>();
+        nombreColumna.add("ID Entrenamiento");
+        nombreColumna.add("Entrenamiento");
+        nombreColumna.add("Entrenador");
+        nombreColumna.add("Especialidad");
+        for(Object columna: nombreColumna){
+            model.addColumn(columna);
+        }
+        this.table.setModel(model);
+        
         Conn c = new Conn();
-        ArrayList<Training> trList= new ArrayList<Training>();
-        
-        
+        TrainingManagement tr = new TrainingManagement();
+        ArrayList<Object[]> arr= tr.getTraining(c.Connect());
+        for(Object[]dato : arr){
+            model.addRow(dato);
+        }
+        this.table.setModel(model);
     }
     
-    /**
-     * Creates new form usersHome
-     */
     public usersHome() {
         initComponents();
-        setSize(350, 416);
+        setSize(358, 534);
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
+        charge();
     }
     public String getUser() {
         return user;
@@ -55,7 +67,9 @@ public class usersHome extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        selectT = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,52 +84,84 @@ public class usersHome extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table = new javax.swing.JTable(){
+            public boolean isCellEditable(int filas,int columnas){
+                return false;
+            }
+        };
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
                 "Entrenamiento", "Entrenador", "Especialidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(table);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setResizable(false);
+            table.getColumnModel().getColumn(1).setResizable(false);
+            table.getColumnModel().getColumn(2).setResizable(false);
         }
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Entrenamientos Disponibles");
+
+        selectT.setBackground(new java.awt.Color(51, 51, 51));
+        selectT.setForeground(new java.awt.Color(255, 255, 255));
+        selectT.setText("Seleccionar");
+        selectT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addGap(0, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 4, Short.MAX_VALUE)
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addGap(78, 78, 78)
+                        .addComponent(selectT, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(160, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
-                .addContainerGap())
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,6 +185,22 @@ public class usersHome extends javax.swing.JFrame {
         ua.setVisible(true);
         dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void selectTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTActionPerformed
+        // TODO add your handling code here:
+        Conn c = new Conn();
+        UserManagement um= new UserManagement();
+        int select= table.getSelectedRow();
+        int trainingID;
+        if(select>=0){
+            trainingID=parseInt (table.getValueAt(select, 0).toString());
+            um.setTraining(c.Connect(), trainingID, getUser());
+            JOptionPane.showMessageDialog(null, "Seleccionado Exitosamente");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debes Seleccionar Algo antes");
+        }
+    }//GEN-LAST:event_selectTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,9 +238,11 @@ public class usersHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton selectT;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

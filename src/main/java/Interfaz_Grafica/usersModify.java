@@ -264,7 +264,6 @@ public class usersModify extends javax.swing.JFrame {
         emailPanel.setText(u.getEmail());
         weightPanel.setText(String.valueOf(u.getWeight()));
         heightPanel.setText(String.valueOf(u.getHeight()));
-      
     }
     
     public static void main(String args[]) {

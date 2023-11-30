@@ -2,9 +2,6 @@ package Clases;
 
 import java.util.ArrayList;
 
-
-
-
 public class Training {
     private int ID;
     private String trainingName;
