@@ -194,6 +194,8 @@ public class usersApplication extends javax.swing.JFrame{
         // TODO add your handling code here:
         usersTraining ut = new usersTraining();
         ut.setUser(getUsuario());
+        ut.showData();
+        ut.charge();
         ut.setVisible(true);
         dispose();
     }//GEN-LAST:event_trainingActionPerformed

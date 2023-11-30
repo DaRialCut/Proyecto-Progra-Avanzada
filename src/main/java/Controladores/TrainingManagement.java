@@ -163,4 +163,19 @@ public class TrainingManagement implements TrainingDb{
         }
         return 1;
     }
+    public String getTraining(Connection link,int trainingID){
+        query="SELECT nameT FROM training WHERE trainingID = ?";
+        try{
+            ps= link.prepareStatement(query);
+            ps.setInt(1,trainingID);
+            rs= ps.executeQuery();
+            if(rs.next()){
+                return rs.getString(1);
+            }
+            
+        }catch(SQLException ex){
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return null;
+    }
 }
