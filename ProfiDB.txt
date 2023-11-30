@@ -1,0 +1,58 @@
+
+
+CREATE TABLE Trainer
+(
+  trainerID INT NOT NULL AUTO_INCREMENT,
+  specialty VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  username VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  age INT NOT NULL,
+  gender VARCHAR(100) NOT NULL,
+  PRIMARY KEY (trainerID),
+  UNIQUE (username)
+);
+
+CREATE TABLE Training
+(
+  trainingID INT NOT NULL AUTO_INCREMENT,
+  nameT VARCHAR(100) NOT NULL,
+  trainerID INT NOT NULL,
+  PRIMARY KEY (trainingID),
+  UNIQUE (nameT),
+  FOREIGN KEY (trainerID) REFERENCES Trainer(trainerID)
+);
+CREATE TABLE User
+(
+  userID INT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  weight DOUBLE NOT NULL,
+  height DOUBLE NOT NULL,
+  bmi DOUBLE NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  gender VARCHAR(100) NOT NULL,
+  age INT NOT NULL,
+  trainingID INT,
+  PRIMARY KEY (userID),
+  UNIQUE (username),
+  FOREIGN KEY(trainingID) REFERENCES Training(trainingID)
+);
+
+CREATE TABLE Excercise
+(
+  exID INT NOT NULL AUTO_INCREMENT,
+  nameE VARCHAR(100) NOT NULL,
+  burntCal INT NOT NULL,
+  difficulty VARCHAR(100) NOT NULL,
+  reps INT NOT NULL,
+  PRIMARY KEY (exID),
+);
+
+CREATE TABLE Excer_Training
+(
+  trainingID INT NOT NULL,
+  exID INT NOT NULL,
+  FOREIGN KEY (trainingID) REFERENCES Training(trainingID),
+  FOREIGN KEY (exID) REFERENCES Excercise(exID)
+);
