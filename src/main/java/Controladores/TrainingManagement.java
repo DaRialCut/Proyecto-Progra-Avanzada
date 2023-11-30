@@ -1,4 +1,3 @@
-
 package Controladores;
 import Clases.Training;
 import Clases.TrainingDb;
@@ -94,7 +93,7 @@ public class TrainingManagement implements TrainingDb{
     @Override
     public Training Buscar(Connection link, String name) {
         Training training=new Training();
-        query="select * from Training where userName= ?";
+        query="select * from Training where nameT= ?";
         try {
             ps= link.prepareStatement(query);
             ps.setString(1, name);
@@ -134,6 +133,34 @@ public class TrainingManagement implements TrainingDb{
         return null;
     }
     
+    public boolean addExcercise(Connection link, int trID, int exID){
+        query = "INSERT INTO excer_training (trainingID, exID) VALUES (?,?)";
+        //System.out.println("PRUEBA  "+ exID +"  "+ trID);
+        try{
+            ps = link.prepareStatement(query);
+            ps.setInt(1, trID);
+            ps.setInt(2, exID);
+            ps.execute();
+            return true;
+        }catch(SQLException ex){
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return false;
+    }
     
-    
+    public int Validate(Connection link, String nameT){
+        query = "SELECT count(nameT) FROM TRAINING WHERE nameT = ?";
+        
+        try{
+            ps = link.prepareStatement(query);
+            ps.setString(1, nameT);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1;
+    }
 }

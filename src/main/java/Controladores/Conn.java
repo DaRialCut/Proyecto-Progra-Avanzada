@@ -26,7 +26,6 @@ public class Conn {
     }
     
     public Connection Connect() {
-        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.link = DriverManager.getConnection(this.url, this.user, this.pass);

@@ -62,11 +62,19 @@ public class TrainerManagement implements TrainerDb {
     }
     @Override
     public boolean Delete(Connection link, String userName) {
-         query="delete * Trainer where userName= ?";
          try {
-            //aqui hay que buscar si se encuentra 
+             
+             
+            String deleteTrainingQuery = "DELETE FROM training WHERE trainerID IN (SELECT trainerID FROM Trainer WHERE userName = ?)";
+            ps = link.prepareStatement(deleteTrainingQuery);
             ps.setString(1, userName);
-            rs= ps.executeQuery(query);
+            ps.executeUpdate();
+            
+            String deleteTrainerQuery = "DELETE FROM Trainer WHERE userName = ?";
+            ps = link.prepareStatement(deleteTrainerQuery);
+            ps.setString(1, userName);
+            ps.executeUpdate();
+            
             return true;
             
         }catch (SQLException ex) {
@@ -75,6 +83,7 @@ public class TrainerManagement implements TrainerDb {
         
         return false;
     }
+    
     public ArrayList<Trainer> Read(Connection link) {
         try{
             Statement s = link.createStatement();
@@ -106,7 +115,7 @@ public class TrainerManagement implements TrainerDb {
         try {
             ps= link.prepareStatement(query);
             ps.setString(1, userName);
-            rs=ps.executeQuery(query);
+            rs=ps.executeQuery();
             while (rs.next()){
                trainer.setID(rs.getInt("trainerID"));
                trainer.setName(rs.getString("userName"));
@@ -144,6 +153,7 @@ public class TrainerManagement implements TrainerDb {
         
         return 1;
     }
+    
     public int Validate(Connection link ,String userName, String password){
         query="SELECT count(username) FROM Trainer WHERE userName = ? AND password = ?";
         

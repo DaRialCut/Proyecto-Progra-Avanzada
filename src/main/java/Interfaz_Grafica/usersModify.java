@@ -251,11 +251,11 @@ public class usersModify extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void showData(){
-        Conn c =  new Conn();
+    public void showData() {
+        Conn c = new Conn();
         UserManagement um = new UserManagement();
-        User u =  um.Search(c.Connect(),getUser());
-       
+        User u = um.Search(c.Connect(), getUser());
+
         usernamePanel.setText(u.getName());
         usernamePanel.setEditable(false);
         passPanel.setText(u.getPassword());
@@ -264,7 +264,6 @@ public class usersModify extends javax.swing.JFrame {
         emailPanel.setText(u.getEmail());
         weightPanel.setText(String.valueOf(u.getWeight()));
         heightPanel.setText(String.valueOf(u.getHeight()));
-      
     }
     
     public static void main(String args[]) {

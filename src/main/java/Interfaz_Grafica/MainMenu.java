@@ -64,11 +64,11 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setText("Iniciar Sesión");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Todavia no eres parte?");
+        jLabel2.setText("¿Todavia no eres parte?");
 
         Registrarse.setBackground(new java.awt.Color(0, 0, 0));
         Registrarse.setForeground(new java.awt.Color(255, 255, 255));
-        Registrarse.setText("Registrarme");
+        Registrarse.setText("Registrarse");
         Registrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarseActionPerformed(evt);
@@ -80,24 +80,25 @@ public class MainMenu extends javax.swing.JFrame {
         SeleccionEntrenadorLayout.setHorizontalGroup(
             SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SeleccionEntrenadorLayout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
-                .addGroup(SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SeleccionEntrenadorLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addContainerGap())
-            .addGroup(SeleccionEntrenadorLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addGroup(SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tituloTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SeleccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 111, Short.MAX_VALUE))
             .addGroup(SeleccionEntrenadorLayout.createSequentialGroup()
                 .addGap(136, 136, 136)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SeleccionEntrenadorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SeleccionEntrenadorLayout.createSequentialGroup()
+                        .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SeleccionEntrenadorLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap())))
         );
         SeleccionEntrenadorLayout.setVerticalGroup(
             SeleccionEntrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
