@@ -1,5 +1,3 @@
-
-
 CREATE TABLE Trainer
 (
   trainerID INT NOT NULL AUTO_INCREMENT,
@@ -46,7 +44,7 @@ CREATE TABLE Excercise
   burntCal INT NOT NULL,
   difficulty VARCHAR(100) NOT NULL,
   reps INT NOT NULL,
-  PRIMARY KEY (exID),
+  PRIMARY KEY (exID)
 );
 
 CREATE TABLE Excer_Training
