@@ -175,7 +175,25 @@ public class usersApplication extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void trainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainingActionPerformed
+        // TODO add your handling code here:
+        usersTraining ut = new usersTraining();
+        ut.setUser(getUsuario());
+        ut.showData();
+        ut.charge();
+        ut.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_trainingActionPerformed
 
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        // TODO add your handling code here:
+        usersHome uh = new usersHome();
+        uh.setUser(getUsuario());
+        uh.charge();
+        uh.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_homeActionPerformed
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
         // TODO add your handling code here:
         usersProfile up = new usersProfile();

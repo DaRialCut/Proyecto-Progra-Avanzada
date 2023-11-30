@@ -4,10 +4,9 @@
  */
 package Interfaz_Grafica;
 
-import Clases.User;
+import Clases.Trainer;
 import Controladores.Conn;
-import Controladores.UserManagement;
-import static java.lang.Double.parseDouble;
+import Controladores.TrainerManagement;
 import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 
@@ -15,16 +14,16 @@ import javax.swing.JOptionPane;
  *
  * @author nan_c
  */
-public class Register extends javax.swing.JFrame {
+public class trRegister extends javax.swing.JFrame {
 
     /**
-     * Creates new form Registrarse
+     * Creates new form trRegister
      */
-    public Register() {
+    public trRegister() {
+        initComponents();
         setSize(350, 416);
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
-        initComponents();
     }
 
     /**
@@ -36,7 +35,6 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,10 +46,8 @@ public class Register extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         age = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        weight = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        height = new javax.swing.JTextField();
+        specialty = new javax.swing.JTextField();
         register = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         gender = new javax.swing.JTextField();
@@ -98,20 +94,14 @@ public class Register extends javax.swing.JFrame {
         age.setBackground(new java.awt.Color(0, 0, 0));
         age.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Peso");
-
-        weight.setBackground(new java.awt.Color(0, 0, 0));
-        weight.setForeground(new java.awt.Color(255, 255, 255));
-
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Altura");
+        jLabel8.setText("Especialidad");
 
-        height.setBackground(new java.awt.Color(0, 0, 0));
-        height.setForeground(new java.awt.Color(255, 255, 255));
-        height.addActionListener(new java.awt.event.ActionListener() {
+        specialty.setBackground(new java.awt.Color(0, 0, 0));
+        specialty.setForeground(new java.awt.Color(255, 255, 255));
+        specialty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                heightActionPerformed(evt);
+                specialtyActionPerformed(evt);
             }
         });
 
@@ -140,6 +130,31 @@ public class Register extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel1)
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(specialty, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(age)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gender)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,42 +163,7 @@ public class Register extends javax.swing.JFrame {
                         .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(register)
-                        .addGap(129, 129, 129))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel1)
-                                .addGap(36, 36, 36))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(93, 93, 93))
-                                            .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel2))
-                                    .addComponent(weight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(height, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(age, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gender)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addGap(131, 131, 131))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,19 +188,15 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                    .addComponent(specialty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(register)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addGap(16, 16, 16))
         );
@@ -238,57 +214,48 @@ public class Register extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
+
     private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameActionPerformed
 
-    private void heightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heightActionPerformed
+    private void specialtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_heightActionPerformed
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
-        mainMenu();
-    }//GEN-LAST:event_backButtonActionPerformed
+    }//GEN-LAST:event_specialtyActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         // TODO add your handling code here:
-        
+
         //Restricciones
         String pass= new String(password.getPassword());
         Conn c = new Conn();
-        User us= new User();
-        UserManagement usM= new UserManagement();
-        
-        if(userName.getText().equals("") || pass.equals("") || gender.getText().equals("") ||
-                age.getText().equals("")|| weight.getText().equals("") || height.getText().equals("")
-                || email.getText().equals("")){
+        Trainer tr= new Trainer();
+        TrainerManagement tm= new TrainerManagement();
+
+        if(userName.getText().equals("") || password.getText().equals("") || gender.getText().equals("") ||
+            age.getText().equals("")|| email.getText().equals("")|| specialty.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Hay campos vacios, debe llenar todos los campos");
         }
         else{
-            
-            // Verificar si el usuario existe o no 
-            // Guardar usuario en la base de datos
-            if(validateData(userName.getText(),pass,gender.getText(),parseInt(age.getText()),Double.valueOf(weight.getText()),Double.valueOf(height.getText()),email.getText())==true){
-                if(usM.Validate(c.Connect(), userName.getText())==0){
-                   us.setName(userName.getText());
-                   us.setPassword(password.getText());
-                   us.setEmail(email.getText());
-                   us.setGender(gender.getText());
-                   us.setAge(parseInt(age.getText()));
-                   us.setWeight(parseDouble(weight.getText()));
-                   us.setHeight(parseDouble(height.getText()));
 
-                   if(usM.Create(c.Connect(), us)==true ){
-                       JOptionPane.showMessageDialog(null,"Usuario registrado correctamente");
-                       mainMenu();
-                   }
-                   else{
-                       JOptionPane.showMessageDialog(null,"Usuario no se pudo registrar");
-                   }
+            // Verificar si el usuario existe o no
+            // Guardar usuario en la base de datos
+            if(validateData(userName.getText(),pass,gender.getText(),parseInt(age.getText()),email.getText(),specialty.getText())==true){
+                if(tm.Validate(c.Connect(), userName.getText())==0){
+                    tr.setName(userName.getText());
+                    tr.setPassword(password.getText());
+                    tr.setEmail(email.getText());
+                    tr.setGender(gender.getText());
+                    tr.setAge(parseInt(age.getText()));
+                    tr.setSpecialty(specialty.getText());
+
+                    if(tm.Create(c.Connect(), tr)==true ){
+                        JOptionPane.showMessageDialog(null,"Usuario registrado correctamente");
+                        mainMenu();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Usuario no se pudo registrar");
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"El nombre de usuario que haz indicado ya existe");
@@ -299,16 +266,22 @@ public class Register extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_registerActionPerformed
-    public boolean validateData(String username,String pass,String gender,int age,Double weight,Double height,String email){
-        if(username.length()>0 && pass.length()>0 && gender.length()>0 && age>0 && weight>0 && height>0 && email.length()>0){
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        mainMenu();
+    }//GEN-LAST:event_backButtonActionPerformed
+    
+    public boolean validateData(String username,String pass,String gender,int age,String email,String specialty){
+        if(username.length()>0 && pass.length()>0 && gender.length()>0 && age>0 && email.length()>0 && specialty.length()>0){
             return true;
         }
         return false;
     }
     
-    private void mainMenu(){
-        MainMenu main = new MainMenu();
-        main.setVisible(true);
+    public void mainMenu(){
+        MainMenu m = new MainMenu();
+        m.setVisible(true);
         dispose();
     }
     /**
@@ -328,21 +301,20 @@ public class Register extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(trRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(trRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(trRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(trRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register().setVisible(true);
+                new trRegister().setVisible(true);
             }
         });
     }
@@ -352,22 +324,17 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JTextField email;
     private javax.swing.JTextField gender;
-    private javax.swing.JTextField height;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton register;
+    private javax.swing.JTextField specialty;
     private javax.swing.JTextField userName;
-    private javax.swing.JTextField weight;
     // End of variables declaration//GEN-END:variables
-
- 
 }

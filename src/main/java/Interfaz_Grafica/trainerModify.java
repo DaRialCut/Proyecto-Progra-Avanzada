@@ -8,6 +8,7 @@ import Clases.Trainer;
 import Controladores.Conn;
 import Controladores.TrainerManagement;
 import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 
 
 public class trainerModify extends javax.swing.JFrame {
@@ -218,18 +219,23 @@ public class trainerModify extends javax.swing.JFrame {
         TrainerManagement tm = new TrainerManagement();
         Trainer t = tm.Search(c.Connect(), getTrainer());
         
-        t.setAge(parseInt(agePanel.getText()));
-        t.setEmail(emailPanel.getText());
-        t.setGender(genderPanel.getText());
-        t.setPassword(passPanel.getText());
-        t.setSpecialty(specialtyPanel.getText());
-        tm.Update(c.Connect(), t);
-        
-        trainerProfile tp = new trainerProfile();
-        tp.setTrainer(trainer);
-        tp.setVisible(true);
-        tp.showData();
-        dispose();
+        if(validateData(passPanel.getText(),genderPanel.getText(),parseInt(agePanel.getText()),emailPanel.getText(),specialtyPanel.getText())==true){
+            t.setAge(parseInt(agePanel.getText()));
+            t.setEmail(emailPanel.getText());
+            t.setGender(genderPanel.getText());
+            t.setPassword(passPanel.getText());
+            t.setSpecialty(specialtyPanel.getText());
+            tm.Update(c.Connect(), t);
+
+            trainerProfile tp = new trainerProfile();
+            tp.setTrainer(trainer);
+            tp.setVisible(true);
+            tp.showData();
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Formato Incorrecto(Texto mayor a 1 caracter,Numeros mayores a 0)");
+        }
     }//GEN-LAST:event_ModBtnActionPerformed
 
     private void cnclBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnclBtnActionPerformed
@@ -254,7 +260,12 @@ public class trainerModify extends javax.swing.JFrame {
         emailPanel.setText(t.getEmail());
         specialtyPanel.setText(t.getSpecialty());
     }
-    
+    public boolean validateData(String pass,String gender,int age,String email,String specialty){
+        if(pass.length()>0 && gender.length()>0 && age>0 && email.length()>0 && specialty.length()>0){
+            return true;
+        }
+        return false;
+    }
     
     /**
      * @param args the command line arguments

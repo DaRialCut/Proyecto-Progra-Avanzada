@@ -9,6 +9,7 @@ import Controladores.Conn;
 import Controladores.UserManagement;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -239,22 +240,31 @@ public class usersModify extends javax.swing.JFrame {
         Conn c =  new Conn();
         UserManagement um = new UserManagement();
         User u =  um.Search(c.Connect(), getUser());
-        
-        u.setPassword(passPanel.getText());
-        u.setAge(parseInt(agePanel.getText()));
-        u.setGender(genderPanel.getText());
-        u.setEmail(emailPanel.getText());
-        u.setWeight(parseDouble(weightPanel.getText()));
-        u.setHeight(parseDouble(heightPanel.getText()));
-        um.Update(c.Connect(), u);  
-        
-        dispose();
-        usersProfile up = new usersProfile();
-        up.setUser(user);
-        up.setVisible(true);
-        up.showData();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if(validateData(passPanel.getText(),genderPanel.getText(),parseInt(agePanel.getText()),Double.valueOf(weightPanel.getText()),Double.valueOf(heightPanel.getText()),emailPanel.getText())==true){
+            u.setPassword(passPanel.getText());
+            u.setAge(parseInt(agePanel.getText()));
+            u.setGender(genderPanel.getText());
+            u.setEmail(emailPanel.getText());
+            u.setWeight(parseDouble(weightPanel.getText()));
+            u.setHeight(parseDouble(heightPanel.getText()));
+            um.Update(c.Connect(), u);  
 
+            dispose();
+            usersProfile up = new usersProfile();
+            up.setUser(user);
+            up.setVisible(true);
+            up.showData();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Formato Incorrecto(Texto mayor a 1 caracter,Numeros mayores a 0)");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public boolean validateData(String pass,String gender,int age,Double weight,Double height,String email){
+        if(pass.length()>0 && gender.length()>0 && age>0 && weight>0 && height>0 && email.length()>0){
+            return true;
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */
