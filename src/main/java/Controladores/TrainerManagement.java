@@ -42,7 +42,7 @@ public class TrainerManagement implements TrainerDb {
 
     @Override
     public boolean Update(Connection link, Trainer trainer) {
-        query="UPDATE Trainer set password= ?, email= ?,gender= ?, age= ?,specialty= ?";
+        query="UPDATE Trainer set username=?, password= ?, email= ?,gender= ?, age= ?,specialty= ? WHERE trainerID = ?";
         try{
             ps= link.prepareStatement(query);
             ps.setString(1,trainer.getName());
@@ -51,6 +51,7 @@ public class TrainerManagement implements TrainerDb {
             ps.setString(4,trainer.getGender());
             ps.setInt(5,trainer.getAge());
             ps.setString(6,trainer.getSpecialty());
+            ps.setInt(7,trainer.getID());
             ps.execute();
             return true;
             
