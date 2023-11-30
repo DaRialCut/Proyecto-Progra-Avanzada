@@ -211,7 +211,7 @@ public class UserManagement implements UserDb{
             rs=ps.executeQuery();
             
             while(rs.next()){
-                Object[] data= new Object[]{rs.getString("nameT"),rs.getInt("burntCal"),rs.getString("difficulty"),rs.getInt("reps")};
+                Object[] data= new Object[]{rs.getString("nameE"),rs.getInt("burntCal"),rs.getString("difficulty"),rs.getInt("reps")};
                 arr.add(data);
                 
             }
