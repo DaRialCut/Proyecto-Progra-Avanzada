@@ -155,7 +155,7 @@ public class ExcerciseManagement implements ExcersiceDb{
             ps= link.prepareStatement(query);
             rs= ps.executeQuery();
             while(rs.next()){
-                Object[]data = new Object[]{rs.getInt("exID"),rs.getString("nameE"),rs.getInt("burntCal"),rs.getInt("reps")};
+                Object[]data = new Object[]{rs.getInt("exID"),rs.getString("nameE"),rs.getString("difficulty"),rs.getInt("burntCal")};
                 arr.add(data);
             }
             return arr;
