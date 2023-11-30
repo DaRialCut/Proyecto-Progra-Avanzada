@@ -1,0 +1,16 @@
+INSERT INTO excercise (nameE, burntCal, difficulty, reps) VALUES
+('Saltos de tijera', 100, 'Fácil', 30),
+('Flexiones', 150, 'Moderado', 20),
+('Correr', 200, 'Difícil', 1), 
+('Sentadillas', 120, 'Moderado', 25),
+('Plancha', 80, 'Fácil', 60),
+('Ciclismo', 180, 'Moderado', 1), 
+('Burpees', 200, 'Difícil', 15),
+('Natación', 250, 'Difícil', 1), 
+('Yoga', 90, 'Fácil', 45),
+('Saltar la cuerda', 160, 'Moderado', 100),
+('Zancadas', 140, 'Moderado', 20),
+('Abdominales', 120, 'Fácil', 30),
+('Escaladores', 170, 'Moderado', 40),
+('Curl con mancuernas', 130, 'Moderado', 15),
+('Senderismo', 220, 'Difícil', 1); 
