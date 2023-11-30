@@ -21,6 +21,7 @@ public class usersLogin extends javax.swing.JFrame {
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
         initComponents();
+        setResizable(false);
     }
 
     /**

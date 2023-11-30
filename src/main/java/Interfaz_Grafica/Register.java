@@ -25,6 +25,7 @@ public class Register extends javax.swing.JFrame {
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
         initComponents();
+        setResizable(false);
     }
 
     /**

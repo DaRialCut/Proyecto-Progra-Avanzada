@@ -4,7 +4,7 @@ public class User extends Person{
     private double weight; //kilogramos
     private double height; //metros
     private double bmi;
-    private int currentTraining;
+    private int currentTraining = 0;
 
     // Constructores
     public User(){

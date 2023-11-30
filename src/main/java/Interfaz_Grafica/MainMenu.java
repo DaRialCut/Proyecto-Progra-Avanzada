@@ -15,6 +15,7 @@ public class MainMenu extends javax.swing.JFrame {
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
         initComponents();
+        setResizable(false);
     }
 
     /**

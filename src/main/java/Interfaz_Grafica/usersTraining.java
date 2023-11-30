@@ -19,17 +19,14 @@ public class usersTraining extends javax.swing.JFrame {
     String user;
     DefaultTableModel model=  new DefaultTableModel();
     
-    
-    
-    /**
-     * Creates new form usersTraining
-     */
     public usersTraining() {
         initComponents();
         setSize(358, 534);
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
+        setResizable(false);
     }
+    
     public String getUser() {
         return user;
     }

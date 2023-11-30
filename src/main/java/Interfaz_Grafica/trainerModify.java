@@ -19,6 +19,7 @@ public class trainerModify extends javax.swing.JFrame {
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
         initComponents();
+        setResizable(false);
     }
 
     public String getTrainer() {

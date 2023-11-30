@@ -24,6 +24,7 @@ public class trRegister extends javax.swing.JFrame {
         setSize(350, 416);
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

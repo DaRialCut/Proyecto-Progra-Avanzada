@@ -15,10 +15,16 @@ public class trainingAdd extends javax.swing.JFrame {
     private ArrayList<Integer> exIDS = new ArrayList<>();
     private String trainer;
     DefaultTableModel model = new DefaultTableModel();
-    /**
-     * Creates new form trainingAdd
-     */
     
+    public trainingAdd() {
+        setSize(350, 416);
+        setTitle("Profi-Health");
+        setLocationRelativeTo(null);
+        initComponents();
+        setResizable(false);
+        charge();
+    }
+
     public void charge(){
         ArrayList<Object> col = new ArrayList<Object>();
         Controladores.Conn c = new Controladores.Conn();
@@ -40,15 +46,6 @@ public class trainingAdd extends javax.swing.JFrame {
             model.addRow(dato);
         }
         this.table.setModel(model);
-    }
-    
-    public trainingAdd() {
-        setSize(350, 416);
-        setTitle("Profi-Health");
-        setLocationRelativeTo(null);
-        initComponents();
-        setResizable(false);
-        charge();
     }
     
     public void setTrainer(String trainer){

@@ -24,6 +24,7 @@ public class usersModify extends javax.swing.JFrame {
         initComponents();
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     public String getUser() {
