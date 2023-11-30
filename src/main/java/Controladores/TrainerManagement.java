@@ -63,6 +63,8 @@ public class TrainerManagement implements TrainerDb {
     @Override
     public boolean Delete(Connection link, String userName) {
          try {
+             
+             
             String deleteTrainingQuery = "DELETE FROM training WHERE trainerID IN (SELECT trainerID FROM Trainer WHERE userName = ?)";
             ps = link.prepareStatement(deleteTrainingQuery);
             ps.setString(1, userName);

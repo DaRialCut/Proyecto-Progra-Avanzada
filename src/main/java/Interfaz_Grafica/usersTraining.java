@@ -15,7 +15,7 @@ public class usersTraining extends javax.swing.JFrame {
      */
     public usersTraining() {
         initComponents();
-        setSize(350, 416);
+        setSize(358, 534);
         setTitle("Profi-Health");
         setLocationRelativeTo(null);
     }
